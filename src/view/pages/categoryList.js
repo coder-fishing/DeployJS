@@ -5,6 +5,7 @@ import { setupPaginationEvents } from "../../utils/setupPaginationEvents.js";
 import { showLoading, hideLoading } from "../../utils/loading.js";
 import { createToast } from "../../utils/toast.js";
 
+
 class CategoryListView {
     constructor() {
         this.categories = [];

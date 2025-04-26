@@ -5,6 +5,7 @@ import CategoryController from "../../controller/CategoryController";
 import { showLoading, hideLoading } from "../../utils/loading.js";
 import { createToast } from "../../utils/toast.js";
 
+
 export default class editCategory {
     constructor() {
         this.controller = new CategoryController();
@@ -83,15 +84,15 @@ export default class editCategory {
             }
             
             const categoryData = new Category(formData.name, formData.description, imageUrl);
-            await this.controller.updateCategory(this.categoryId, categoryData);
-            
-            createToast('Category updated successfully!', 'success');
+            await this.controller.updateCategory(this.categoryId, categoryData);          
+            createToast('Category updated successfully!', 'success')
             this.controller.redirect('/category');
         } catch (error) {
             console.error('Error:', error);
             createToast('Failed to update category', 'error');
         } finally {
             hideLoading();
+
             this.controller.setButtonLoading(submitButton, false, 'Save Category');
         }
     }

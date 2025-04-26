@@ -6,6 +6,7 @@ import CategoryController from "../../controller/CategoryController";
 import { showLoading, hideLoading } from "../../utils/loading.js";
 import { createToast } from "../../utils/toast.js";
 
+
 class addCategories {  
     constructor() {
         this.controller = new CategoryController();
@@ -72,7 +73,6 @@ class addCategories {
         try {
             showLoading();
             this.controller.setButtonLoading(submitButton, true);
-            
             const imageUrl = await this.controller.handleImageUpload(formData.imageUrl);
             const categoryData = new Category(formData.name, formData.description, imageUrl);
             await this.controller.saveCategory(categoryData);
@@ -126,6 +126,7 @@ class addCategories {
         } finally {
             hideLoading();
         }
+
     }
 }
 

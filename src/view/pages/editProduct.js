@@ -5,6 +5,7 @@ import ProductController from "../../controller/ProductController.js";
 import { showLoading, hideLoading } from "../../utils/loading.js";
 import { createToast } from "../../utils/toast.js";
 
+
 export class editProduct {
     constructor() {
         this.controller = new ProductController();
@@ -110,7 +111,7 @@ export class editProduct {
 
     render = async () => {
         try {
-            showLoading();
+            showLoading()
             this.currentProduct = await this.controller.getProductById(this.productId);
             
             if (!this.currentProduct) {
@@ -120,7 +121,6 @@ export class editProduct {
             }
 
             this.currentProduct.div = this.currentProduct.status.toLowerCase().replace(/\s+/g, '-');
-            
             const content = `
             <div class="product-list">
                 <div class="product-title">

@@ -7,6 +7,7 @@ import { showLoading, hideLoading } from "../../utils/loading.js";
 import { createToast } from "../../utils/toast.js";
 import { showConfirmDialog } from '../components/confirmDialog.js';
 
+
 class ProductListView {
 
     constructor(products = []) {

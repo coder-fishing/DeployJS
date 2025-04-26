@@ -5,6 +5,7 @@ import ProductController from "../../controller/ProductController.js";
 import { showLoading, hideLoading } from "../../utils/loading.js";
 import { createToast } from "../../utils/toast.js";
 
+
 export class addProduct {
     constructor() {
         this.controller = new ProductController();
@@ -37,7 +38,6 @@ export class addProduct {
     handleAddProduct = () => {
         const saveBtn = document.querySelector("#addProduct");
         const cancelBtn = document.querySelector(".product-title__buttons--cancel");
-
         // Set initial status
         const statusText = document.getElementById('status-text');
         const dropdownButton = document.getElementById('dropdownButton');
@@ -157,6 +157,7 @@ export class addProduct {
             createToast('Failed to load form', 'error');
         } finally {
             hideLoading();
+
         }
     };
 }
