@@ -10,7 +10,7 @@ export const showLoading = () => {
     document.body.appendChild(loading);
 };
 
-export default  hideLoading = () => {
+export const  hideLoading = () => {
     const loading = document.querySelector('.loading-overlay');
     if (loading) {
         loading.classList.add('loading-fade-out');

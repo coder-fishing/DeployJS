@@ -1,4 +1,4 @@
-export default showConfirmDialog = ({ title, message, onConfirm, onCancel }) => {
+export const showConfirmDialog = ({ title, message, onConfirm, onCancel }) => {
     // Create dialog container
     const dialogContainer = document.createElement('div');
     dialogContainer.className = 'confirm-dialog-overlay';

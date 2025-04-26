@@ -1,4 +1,4 @@
-export default createToast = (message, type = 'success') => {
+export const createToast = (message, type = 'success') => {
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
     
