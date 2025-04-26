@@ -126,7 +126,6 @@ class addCategories {
         } finally {
             hideLoading();
         }
-
     }
 }
 

@@ -121,6 +121,7 @@ export class editProduct {
             }
 
             this.currentProduct.div = this.currentProduct.status.toLowerCase().replace(/\s+/g, '-');
+
             const content = `
             <div class="product-list">
                 <div class="product-title">

@@ -92,7 +92,6 @@ export default class editCategory {
             createToast('Failed to update category', 'error');
         } finally {
             hideLoading();
-
             this.controller.setButtonLoading(submitButton, false, 'Save Category');
         }
     }

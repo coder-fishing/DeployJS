@@ -157,7 +157,6 @@ export class addProduct {
             createToast('Failed to load form', 'error');
         } finally {
             hideLoading();
-
         }
     };
 }
