@@ -5,7 +5,6 @@ import ProductController from "../../controller/ProductController.js";
 import { showLoading, hideLoading } from "../../utils/loading.js";
 import { createToast } from "../../utils/toast.js";
 
-
 export class editProduct {
     constructor() {
         this.controller = new ProductController();
@@ -16,7 +15,6 @@ export class editProduct {
 
     async loadCategories() {
         try {
-            showLoading();
             const categories = await this.controller.getCategories();
             const dropdownContent = document.getElementById('dropdownContentTop');
             const dropdownButton = document.getElementById('dropdownButtonTop');
@@ -41,8 +39,6 @@ export class editProduct {
         } catch (error) {
             console.error('Error loading categories:', error);
             createToast('Failed to load categories', 'error');
-        } finally {
-            hideLoading();
         }
     }
 
@@ -64,6 +60,7 @@ export class editProduct {
         saveBtn.addEventListener("click", async () => {
             try {
                 showLoading();
+
                 const images = Array.from(document.querySelectorAll(".preview-img"));
                 const imageFiles = Array.from(document.querySelectorAll('input[type="file"]'))
                     .map(input => input.files[0])
@@ -111,17 +108,20 @@ export class editProduct {
 
     render = async () => {
         try {
-            showLoading()
+            showLoading();
             this.currentProduct = await this.controller.getProductById(this.productId);
             
             if (!this.currentProduct) {
-                document.querySelector(".content").innerHTML = "<p>Error loading product</p>";
+                document.querySelector(".content").innerHTML = `
+                    <div class="error-message">
+                        <p>❌ Error loading product. Product not found.</p>
+                    </div>`;
                 createToast('Product not found', 'error');
                 return;
             }
 
             this.currentProduct.div = this.currentProduct.status.toLowerCase().replace(/\s+/g, '-');
-
+            
             const content = `
             <div class="product-list">
                 <div class="product-title">
@@ -175,7 +175,10 @@ export class editProduct {
             createToast('Product loaded successfully', 'success');
         } catch (error) {
             console.error("Error in render:", error);
-            document.querySelector(".content").innerHTML = "<p>Error loading product</p>";
+            document.querySelector(".content").innerHTML = `
+                <div class="error-message">
+                    <p>❌ Error loading product.</p>
+                </div>`;
             createToast('Failed to load product', 'error');
         } finally {
             hideLoading();
