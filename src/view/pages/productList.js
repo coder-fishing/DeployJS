@@ -7,7 +7,6 @@ import { showLoading, hideLoading } from "../../utils/loading.js";
 import { createToast } from "../../utils/toast.js";
 import { showConfirmDialog } from '../components/confirmDialog.js';
 
-
 class ProductListView {
 
     constructor(products = []) {
@@ -45,6 +44,28 @@ class ProductListView {
     this.setupSearchEvent();
     this.setupDeleteHandlers();
     this.setupBulkActions();
+    this.setupNavigationEvents();
+  }
+
+  setupNavigationEvents() {
+    document.addEventListener('click', (e) => {
+        const prevBtn = e.target.closest('#prevbtn');
+        const nextBtn = e.target.closest('#nextbtn');
+
+        if (prevBtn) {
+            if (this.currentPage > 1) {
+                this.currentPage -= 1;
+                this.renderTableOnly();
+            }
+        }
+
+        if (nextBtn) {
+            if (this.currentPage < this.maxPage) {
+                this.currentPage += 1;
+                this.renderTableOnly();
+            }
+        }
+    });
   }
 
   setupBulkActions() {
@@ -384,6 +405,7 @@ class ProductListView {
     setupPaginationEvents();
     this.clickTable();
     this.clickTagItem();
+
   }
 
   setupSearchEvent() {
@@ -446,4 +468,5 @@ class ProductListView {
   }
 }
 
+  
 export default ProductListView;

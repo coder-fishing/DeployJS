@@ -5,7 +5,6 @@ import { setupPaginationEvents } from "../../utils/setupPaginationEvents.js";
 import { showLoading, hideLoading } from "../../utils/loading.js";
 import { createToast } from "../../utils/toast.js";
 
-
 class CategoryListView {
     constructor() {
         this.categories = [];
@@ -38,7 +37,29 @@ class CategoryListView {
         await this.fetchCategories();
         this.setupDeleteHandlers();
         this.setupBulkActions();
+        this.setupNavigationEvents();
     }
+
+    setupNavigationEvents() {
+        document.addEventListener('click', (e) => {
+            const prevBtn = e.target.closest('#prevbtn');
+            const nextBtn = e.target.closest('#nextbtn');
+    
+            if (prevBtn) {
+                if (this.currentPage > 1) {
+                    this.currentPage -= 1;
+                    this.renderTableOnly();
+                }
+            }
+    
+            if (nextBtn) {
+                if (this.currentPage < this.maxPage) {
+                    this.currentPage += 1;
+                    this.renderTableOnly();
+                }
+            }
+        });
+      }
 
     setupBulkActions() {
         document.addEventListener('click', (e) => {
@@ -193,7 +214,7 @@ class CategoryListView {
             this.clickTable();
         }
         this.renderPagination();
-    }
+      }
 
     render() {
         const paginatedCategories = this.getPaginatedCategories();
